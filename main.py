@@ -1,6 +1,7 @@
-import random
+import secrets
 
 password = []
+shuffler = secrets.SystemRandom()
 
 # Character pools
 lower_letters = ["a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z"]
@@ -42,23 +43,23 @@ if lower_letter + upper_letter + symbol > password_length:
 # Adds characters based on inputs to the password list
 for character in range(0,password_length):
     if lower_letter > 0:
-        l_letter = random.choice(lower_letters)
+        l_letter = secrets.choice(lower_letters)
         password.append(l_letter)
         lower_letter -= 1
     elif upper_letter > 0:
-        u_letter = random.choice(upper_letters)
+        u_letter = secrets.choice(upper_letters)
         password.append(u_letter)
         upper_letter -= 1
     elif symbol > 0:
-        s_char = random.choice(symbols)
+        s_char = secrets.choice(symbols)
         password.append(s_char)
         symbol -= 1
     else:
-        num = str(random.randint(0,9))
+        num = str(secrets.randbelow(10))
         password.append(num)
 
 # Shuffles password list items
-random.shuffle(password)
+shuffler.shuffle(password)
 # Creates the password string
 password_result = "".join(password)
 # Outputs password
